@@ -1,0 +1,107 @@
+<!DOCTYPE <!DOCTYPE html>
+
+<html>
+
+<head>
+    {{> headerlinks}}
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    {{> navbar}}
+
+    <!--MAin header-->
+    <div class="container-fluid main_header">
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+                <div class="main-content">
+                    <form class="temp_form">
+
+                        <input type="text" id="cityName" placeholder="Enter City Name Here" autocomplete="off">
+                        <input type="submit" value= "Search" id="submitBtn">
+                    </form>
+                </div>
+                <div class="tempInfo">
+                    <div class="top_layer">
+                        <p id="day"></p>
+                        <p id="date">21 oct</p>
+                    </div>
+                    <div class="main_layer">
+                        <p id="city_name">Get o/p here</p>
+                        <div class="middle_layer data_hide">
+                            <p id="temp"><span id="temp_real_val"></span><sup>0</sup>C</p>
+                            <p id="temp_status"><i class="" aria-hidden="true"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Footer Code-->
+    {{> footer}}
+
+
+    <script src="js/main.js"></script>
+    <script>
+        const getcurrentDay = () => {
+
+            let weekday = new Array(7);
+
+            weekday[0] = "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thuresday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+
+            let currentTime = new Date();
+            let Today = weekday[currentTime.getDay()];
+            let day = document.getElementById('day');
+            day.innerText = Today;
+        };
+        getcurrentDay();
+
+        const getcurrentDate = () => {
+
+            //let date = document.getElementById('date');
+            let months = [
+                "Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec",
+            ];
+
+            let now = new Date();
+            let hours = now.getHours();
+            let mins = now.getMinutes();
+
+            let month = months[now.getMonth()];
+            let Tdate = now.getDate();
+
+            let period = "am";
+            if (hours > 11) {
+                period = "pm";
+                if (hours > 12) {
+                    hours -= 12; //for 12 he clock
+                }
+            }
+
+            return `${month} ${Tdate} ${hours}:${mins} ${period}`;
+
+
+        };
+
+        date.innerText = getcurrentDate();
+    </script>
+
+
+</body>
+
+</html>
